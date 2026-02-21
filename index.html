@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MGallery Collection — Our Journey</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='28 6 14 23'%3E%3Crect x='28' y='6' width='14' height='23' rx='1' fill='%230b1018'/%3E%3Cpath fill='%23c9a87c' d='M38.972 8l-3.676 12.048L31.62 8l-.51.046-2.124 19.137.52.055 1.986-17.864 3.528 11.577-1.884 6.181h4.32l-1.885-6.181L39.1 9.374l1.981 17.864.52-.055-2.118-19.137-.51.046Zm-2.741 18.559h-2.895l1.445-4.752 1.45 4.752Z'/%3E%3C/svg%3E" type="image/svg+xml">
+  <meta name="theme-color" content="#0b1018">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0b1018;
+      --surface: #131a26;
+      --surface-elevated: #192231;
+      --border: #1e2a3a;
+      --border-subtle: #162030;
+      --gold: #c9a87c;
+      --gold-light: #dfc49e;
+      --gold-dim: #8a7453;
+      --gold-glow: rgba(201, 168, 124, 0.2);
+      --marielle: #c9a87c;
+      --adam: #7ca8c9;
+      --text: #eae5dc;
+      --text-muted: #7d8898;
+      --text-dim: #4a5568;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+
+    .header {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, #0f1722 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-logo {
+      width: clamp(180px, 28vw, 280px);
+      margin: 0 auto 16px;
+      display: block;
+    }
+
+    .header-brand {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .header-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .header-subtitle {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+
+    /* ── Stats ──────────────────────────────────── */
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      flex: 1;
+      min-width: 200px;
+      max-width: 260px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .stat-name.marielle { color: var(--marielle); }
+    .stat-name.adam { color: var(--adam); }
+
+    .stat-count {
+      font-family: var(--font-body);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .progress-fill.marielle { background: var(--marielle); }
+    .progress-fill.adam { background: var(--adam); }
+
+    .stat-pct {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Container ──────────────────────────────── */
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Search ─────────────────────────────────── */
+
+    .search-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      padding: 24px 0 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 8px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 44px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-input:focus { border-color: var(--gold-dim); }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .search-inner { position: relative; }
+
+    /* ── Region ─────────────────────────────────── */
+
+    .region {
+      margin-top: 24px;
+    }
+
+    .region-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .region-header:hover { background: var(--surface-elevated); }
+
+    .region-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .region-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .region-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .region-arrow {
+      color: var(--text-dim);
+      transition: transform 0.3s ease;
+      font-size: 18px;
+    }
+
+    .region.collapsed .region-arrow { transform: rotate(-90deg); }
+    .region.collapsed .region-body { display: none; }
+
+    .region-body {
+      margin-top: 2px;
+    }
+
+    /* ── Country ────────────────────────────────── */
+
+    .country {
+      margin-top: 2px;
+    }
+
+    .country-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px 10px 28px;
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .country-header:hover { background: var(--surface-elevated); }
+
+    .country-flag { font-size: 18px; }
+
+    .country-name {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .country-count {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .country-arrow {
+      color: var(--text-dim);
+      transition: transform 0.3s ease;
+      font-size: 14px;
+    }
+
+    .country.collapsed .country-arrow { transform: rotate(-90deg); }
+    .country.collapsed .country-body { display: none; }
+
+    /* ── Hotel Row ──────────────────────────────── */
+
+    .hotel-list { list-style: none; }
+
+    .hotel-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px 10px 48px;
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.15s;
+    }
+
+    .hotel-row:hover { background: rgba(255, 255, 255, 0.015); }
+    .hotel-row:last-child { border-bottom: none; }
+
+    .hotel-info { flex: 1; min-width: 0; }
+
+    .hotel-name {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hotel-city {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .hotel-toggles {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    /* ── Toggle Button ──────────────────────────── */
+
+    .toggle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-dim);
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .toggle:hover {
+      border-color: var(--text-muted);
+      color: var(--text-muted);
+    }
+
+    .toggle.active-marielle {
+      background: var(--marielle);
+      border-color: var(--marielle);
+      color: #0b1018;
+      box-shadow: 0 0 16px var(--gold-glow);
+    }
+
+    .toggle.active-adam {
+      background: var(--adam);
+      border-color: var(--adam);
+      color: #0b1018;
+      box-shadow: 0 0 16px rgba(124, 168, 201, 0.2);
+    }
+
+    .toggle:active { transform: scale(0.9); }
+
+    /* ── Column Headers ─────────────────────────── */
+
+    .col-headers {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px 8px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .col-headers-spacer { flex: 1; }
+
+    .col-header {
+      width: 34px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .col-header.m-label { color: var(--marielle); margin-right: 8px; }
+    .col-header.a-label { color: var(--adam); }
+
+    /* ── Footer ─────────────────────────────────── */
+
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .footer a {
+      color: var(--gold-dim);
+      text-decoration: none;
+    }
+
+    /* ── Sync indicator ─────────────────────────── */
+
+    .sync-dot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2d6a4f;
+      transition: background 0.3s;
+      z-index: 200;
+    }
+
+    .sync-dot.syncing { background: var(--gold); animation: pulse 1s infinite; }
+    .sync-dot.error { background: #e63946; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── No results ─────────────────────────────── */
+
+    .no-results {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--text-dim);
+      font-style: italic;
+      font-family: var(--font-display);
+      font-size: 18px;
+      display: none;
+    }
+
+    /* ── Responsive ─────────────────────────────── */
+
+    @media (max-width: 600px) {
+      .header { padding: 40px 16px 32px; }
+      .stats { gap: 16px; }
+      .stat-card { padding: 18px; min-width: 150px; }
+      .stat-count { font-size: 26px; }
+      .hotel-row { padding-left: 32px; }
+      .col-headers { padding-left: 32px; }
+      .hotel-name { font-size: 13px; }
+      .toggle { width: 30px; height: 30px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <svg class="header-logo" viewBox="0 0 70 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MGallery">
+      <path fill="#c9a87c" d="m30.819 30.54-.296.75h.597l-.301-.75Zm.46 1.125h-.92l-.127.29h-.49l1-2.267h.153l.996 2.266h-.49l-.123-.289Zm1.326-1.932h.46v1.81h.98v.411h-1.44v-2.22Zm2.185 0h.46v1.81h.98v.411h-1.44v-2.22Zm2.185 0h1.506v.411h-1.046v.451h.77v.386h-.77v.563h1.087v.41h-1.547v-2.22Zm2.808 1.035h.383c.215 0 .337-.127.337-.32 0-.192-.133-.314-.337-.314h-.383v.634Zm.92 1.186-.583-.786h-.337v.786h-.46v-2.226h.843c.47 0 .807.29.807.72a.686.686 0 0 1-.393.634l.633.872h-.51Zm2.113-.801v.801h-.455v-.796l-.776-1.425h.51l.496.954.49-.954h.506l-.771 1.42Zm-13.534-.411c.005.112.01.183 0 .284-.051.568-.475.974-1.098.974-.663-.005-1.184-.517-1.184-1.156 0-.64.52-1.156 1.159-1.156.398 0 .755.203.965.512l-.363.223c-.133-.188-.357-.34-.602-.34-.403 0-.735.355-.735.756 0 .4.332.755.776.755.347 0 .592-.213.628-.481h-.787v-.38l1.241.01Zm10.2-22.696L38.972 8l-3.676 12.048L31.62 8l-.51.046-2.124 19.137.52.055 1.986-17.864 3.528 11.577-1.884 6.181h4.32l-1.885-6.181L39.1 9.374l1.981 17.864.52-.055-2.118-19.137Zm-2.741 18.559h-2.895l1.445-4.752 1.45 4.752Z"/>
+    </svg>
+    <div class="header-brand">Collection</div>
+    <h1 class="header-title">Our Journey</h1>
+    <p class="header-subtitle">Around the World</p>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-name marielle">Marielle</div>
+        <div class="stat-count" id="stat-marielle-count">0</div>
+        <div class="stat-label">of <span id="stat-total-m">0</span> hotels</div>
+        <div class="progress-bar"><div class="progress-fill marielle" id="progress-marielle" style="width: 0%"></div></div>
+        <div class="stat-pct" id="stat-marielle-pct">0%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-name adam">Adam</div>
+        <div class="stat-count" id="stat-adam-count">0</div>
+        <div class="stat-label">of <span id="stat-total-a">0</span> hotels</div>
+        <div class="progress-bar"><div class="progress-fill adam" id="progress-adam" style="width: 0%"></div></div>
+        <div class="stat-pct" id="stat-adam-pct">0%</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="search-wrap">
+      <div class="search-inner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" class="search-input" id="search" placeholder="Search hotels, cities, or countries..." autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div id="hotel-container"></div>
+    <div class="no-results" id="no-results">No hotels found</div>
+  </div>
+
+  <footer class="footer">
+    <span id="total-count">0</span> boutique hotels across 6 continents
+  </footer>
+
+  <div class="sync-dot" id="sync-dot" title="Sync status"></div>
+
+<script>
+// ── Hotel Data ────────────────────────────────────────────
+
+const REGIONS = [
+  {
+    name: "Europe",
+    countries: [
+      {
+        name: "France", flag: "\u{1F1EB}\u{1F1F7}",
+        hotels: [
+          { id: "eu-fr-01", name: "5 Terres H\u00f4tel & Spa", city: "Barr" },
+          { id: "eu-fr-02", name: "Aigle Noir Fontainebleau", city: "Fontainebleau" },
+          { id: "eu-fr-03", name: "Balthazar H\u00f4tel & Spa", city: "Rennes" },
+          { id: "eu-fr-04", name: "Boutet Bastille Hotel", city: "Paris" },
+          { id: "eu-fr-05", name: "Cabot Bordeaux", city: "Bordeaux" },
+          { id: "eu-fr-06", name: "Carlton Hotel Lyon", city: "Lyon" },
+          { id: "eu-fr-07", name: "C\u00f4te Ouest Thalasso & Spa", city: "Les Sables-d\u2019Olonne" },
+          { id: "eu-fr-08", name: "Cour du Corbeau Hotel", city: "Strasbourg" },
+          { id: "eu-fr-09", name: "Croisette Beach Hotel", city: "Cannes" },
+          { id: "eu-fr-10", name: "Cures Marines Hotel & Spa", city: "Trouville-sur-Mer" },
+          { id: "eu-fr-11", name: "Domaine des Vanneaux Golf & Spa", city: "Presles" },
+          { id: "eu-fr-12", name: "Domaine Reine Margot", city: "Issy-les-Moulineaux" },
+          { id: "eu-fr-13", name: "Grand H\u00f4tel Beauvau", city: "Marseille" },
+          { id: "eu-fr-14", name: "Grand Hotel La Cloche", city: "Dijon" },
+          { id: "eu-fr-15", name: "Grand H\u00f4tel Roi Ren\u00e9", city: "Aix-en-Provence" },
+          { id: "eu-fr-16", name: "H\u00f4tel de la Cit\u00e9", city: "Carcassonne" },
+          { id: "eu-fr-17", name: "Hotel L\u2019\u00c9chiquier Op\u00e9ra", city: "Paris" },
+          { id: "eu-fr-18", name: "Jules C\u00e9sar Hotel & Spa", city: "Arles" },
+          { id: "eu-fr-19", name: "La Citadelle Hotel", city: "Metz" },
+          { id: "eu-fr-20", name: "La Cour des Consuls Hotel & Spa", city: "Toulouse" },
+          { id: "eu-fr-21", name: "La Grande Terrasse Hotel & Spa", city: "La Rochelle" },
+          { id: "eu-fr-22", name: "La Licorne Hotel & Spa", city: "Troyes" },
+          { id: "eu-fr-23", name: "L\u2019Esquisse Hotel & Spa", city: "Colmar" },
+          { id: "eu-fr-24", name: "Le Grand H\u00f4tel de Cabourg", city: "Cabourg" },
+          { id: "eu-fr-25", name: "Le Louis Versailles Ch\u00e2teau", city: "Versailles" },
+          { id: "eu-fr-26", name: "Le Royal Hotel", city: "Lyon" },
+          { id: "eu-fr-27", name: "Le Talaia Hotel & Spa", city: "Biarritz" },
+          { id: "eu-fr-28", name: "L\u2019Isle de Leos Hotel & Spa", city: "Libourne" },
+          { id: "eu-fr-29", name: "Molitor Hotel & Spa", city: "Paris" },
+          { id: "eu-fr-30", name: "Nest Hotel Paris la D\u00e9fense", city: "Paris" },
+          { id: "eu-fr-31", name: "Parc Beaumont Hotel & Spa", city: "Pau" },
+          { id: "eu-fr-32", name: "Park Hotel", city: "Grenoble" },
+          { id: "eu-fr-33", name: "Royal Emeraude Hotel", city: "Dinard" },
+          { id: "eu-fr-34", name: "Sainte-Barbe Hotel & Spa", city: "Le Conquet" },
+          { id: "eu-fr-35", name: "The 1932 Hotel & Spa", city: "Cap d\u2019Antibes" },
+          { id: "eu-fr-36", name: "Too Hotel & Spa", city: "Paris" }
+        ]
+      },
+      {
+        name: "Austria", flag: "\u{1F1E6}\u{1F1F9}",
+        hotels: [
+          { id: "eu-at-01", name: "Grand Hotel Bregenz", city: "Bregenz" },
+          { id: "eu-at-02", name: "Hotel Am Konzerthaus", city: "Vienna" }
+        ]
+      },
+      {
+        name: "Belgium", flag: "\u{1F1E7}\u{1F1EA}",
+        hotels: [
+          { id: "eu-be-01", name: "Le Louise Hotel", city: "Brussels" }
+        ]
+      },
+      {
+        name: "Bosnia & Herzegovina", flag: "\u{1F1E7}\u{1F1E6}",
+        hotels: [
+          { id: "eu-ba-01", name: "Tarcin Forest Resort & Spa", city: "Sarajevo" }
+        ]
+      },
+      {
+        name: "Bulgaria", flag: "\u{1F1E7}\u{1F1EC}",
+        hotels: [
+          { id: "eu-bg-01", name: "Maison Sofia", city: "Sofia" },
+          { id: "eu-bg-02", name: "The Emporium Hotel", city: "Plovdiv" }
+        ]
+      },
+      {
+        name: "Croatia", flag: "\u{1F1ED}\u{1F1F7}",
+        hotels: [
+          { id: "eu-hr-01", name: "Heritage Hotel FERMAI", city: "Split" }
+        ]
+      },
+      {
+        name: "Czech Republic", flag: "\u{1F1E8}\u{1F1FF}",
+        hotels: [
+          { id: "eu-cz-01", name: "Century Old Town Prague", city: "Prague" }
+        ]
+      },
+      {
+        name: "Germany", flag: "\u{1F1E9}\u{1F1EA}",
+        hotels: [
+          { id: "eu-de-01", name: "Mondial Am Dom Hotel", city: "Cologne" }
+        ]
+      },
+      {
+        name: "Greece", flag: "\u{1F1EC}\u{1F1F7}",
+        hotels: [
+          { id: "eu-gr-01", name: "Athens Capital Hotel", city: "Athens" },
+          { id: "eu-gr-02", name: "Athens Capital Suites", city: "Athens" },
+          { id: "eu-gr-03", name: "NIKO Seaside Resort", city: "Crete" }
+        ]
+      },
+      {
+        name: "Hungary", flag: "\u{1F1ED}\u{1F1FA}",
+        hotels: [
+          { id: "eu-hu-01", name: "Nemzeti Hotel", city: "Budapest" },
+          { id: "eu-hu-02", name: "Minaro Hotel", city: "Tokaj" }
+        ]
+      },
+      {
+        name: "Italy", flag: "\u{1F1EE}\u{1F1F9}",
+        hotels: [
+          { id: "eu-it-01", name: "Borgobianco Resort & Spa", city: "Polignano a Mare" },
+          { id: "eu-it-02", name: "Cerretani Hotel", city: "Florence" },
+          { id: "eu-it-03", name: "Habita79 Hotel", city: "Pompeii" },
+          { id: "eu-it-04", name: "Papadopoli Hotel", city: "Venice" },
+          { id: "eu-it-05", name: "Palazzo Tirso Hotel", city: "Cagliari" }
+        ]
+      },
+      {
+        name: "Moldova", flag: "\u{1F1F2}\u{1F1E9}",
+        hotels: [
+          { id: "eu-md-01", name: "BERDS Chisinau", city: "Chisinau" }
+        ]
+      },
+      {
+        name: "Netherlands", flag: "\u{1F1F3}\u{1F1F1}",
+        hotels: [
+          { id: "eu-nl-01", name: "INK Hotel Amsterdam", city: "Amsterdam" }
+        ]
+      },
+      {
+        name: "Poland", flag: "\u{1F1F5}\u{1F1F1}",
+        hotels: [
+          { id: "eu-pl-01", name: "Bachleda Luxury Hotel", city: "Krak\u00f3w" },
+          { id: "eu-pl-02", name: "Rezydent Hotel", city: "Sopot" },
+          { id: "eu-pl-03", name: "The Bridge", city: "Wroclaw" }
+        ]
+      },
+      {
+        name: "Switzerland", flag: "\u{1F1E8}\u{1F1ED}",
+        hotels: [
+          { id: "eu-ch-01", name: "Hotel Royal St. Georges", city: "Interlaken" },
+          { id: "eu-ch-02", name: "Rotary Hotel", city: "Geneva" }
+        ]
+      },
+      {
+        name: "United Kingdom", flag: "\u{1F1EC}\u{1F1E7}",
+        hotels: [
+          { id: "eu-gb-01", name: "The Municipal Hotel & Spa", city: "Liverpool" }
+        ]
+      },
+      {
+        name: "Albania", flag: "\u{1F1E6}\u{1F1F1}",
+        hotels: [
+          { id: "eu-al-01", name: "Green Coast Hotel", city: "Vlor\u00eb" }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Asia",
+    countries: [
+      {
+        name: "China", flag: "\u{1F1E8}\u{1F1F3}",
+        hotels: [
+          { id: "as-cn-01", name: "Chengdu Expo Waterfall Hotel", city: "Chengdu" },
+          { id: "as-cn-02", name: "DongFengYun Hotel", city: "Mi\u2019Le" },
+          { id: "as-cn-03", name: "Fashion Town Hotel", city: "Shenzhen" },
+          { id: "as-cn-04", name: "Ming Hotel", city: "Nanjing" },
+          { id: "as-cn-05", name: "Ocean Spring Resort", city: "Chengdu" },
+          { id: "as-cn-06", name: "The View Hotel", city: "Changbai Mountain" },
+          { id: "as-cn-07", name: "Dangkou Ancient Town Hotel", city: "Wuxi" }
+        ]
+      },
+      {
+        name: "Hong Kong", flag: "\u{1F1ED}\u{1F1F0}",
+        hotels: [
+          { id: "as-hk-01", name: "AKI Hotel Hong Kong", city: "Hong Kong" },
+          { id: "as-hk-02", name: "The Silveri Hotel", city: "Hong Kong" }
+        ]
+      },
+      {
+        name: "Indonesia", flag: "\u{1F1EE}\u{1F1E9}",
+        hotels: [
+          { id: "as-id-01", name: "Majapahit Hotel", city: "Surabaya" }
+        ]
+      },
+      {
+        name: "Japan", flag: "\u{1F1EF}\u{1F1F5}",
+        hotels: [
+          { id: "as-jp-01", name: "Hotel Sosei", city: "Sapporo" }
+        ]
+      },
+      {
+        name: "Laos", flag: "\u{1F1F1}\u{1F1E6}",
+        hotels: [
+          { id: "as-la-01", name: "3 Nagas Hotel", city: "Luang Prabang" }
+        ]
+      },
+      {
+        name: "Myanmar", flag: "\u{1F1F2}\u{1F1F2}",
+        hotels: [
+          { id: "as-mm-01", name: "The Lake Garden Hotel", city: "Nay Pyi Taw" }
+        ]
+      },
+      {
+        name: "Philippines", flag: "\u{1F1F5}\u{1F1ED}",
+        hotels: [
+          { id: "as-ph-01", name: "Admiral Hotel", city: "Manila" },
+          { id: "as-ph-02", name: "South Palms Resort & Spa", city: "Panglao" }
+        ]
+      },
+      {
+        name: "South Korea", flag: "\u{1F1F0}\u{1F1F7}",
+        hotels: [
+          { id: "as-kr-01", name: "Hotel Naru", city: "Seoul" }
+        ]
+      },
+      {
+        name: "Thailand", flag: "\u{1F1F9}\u{1F1ED}",
+        hotels: [
+          { id: "as-th-01", name: "Avista Grande Karon Resort & Spa", city: "Phuket" },
+          { id: "as-th-02", name: "Avista Hideaway Patong Resort & Spa", city: "Phuket" },
+          { id: "as-th-03", name: "Veranda High Resort", city: "Chiang Mai" },
+          { id: "as-th-04", name: "Veranda Resort", city: "Pattaya" },
+          { id: "as-th-05", name: "V Villas Hua Hin", city: "Hua Hin" },
+          { id: "as-th-06", name: "V Villas Phuket", city: "Phuket" },
+          { id: "as-th-07", name: "VIE Hotel", city: "Bangkok" }
+        ]
+      },
+      {
+        name: "Turkey", flag: "\u{1F1F9}\u{1F1F7}",
+        hotels: [
+          { id: "as-tr-01", name: "The Artisan Hotel", city: "Istanbul" },
+          { id: "as-tr-02", name: "The Bodrum Hotel", city: "Yalikavak" },
+          { id: "as-tr-03", name: "The Galata Hotel", city: "Istanbul" }
+        ]
+      },
+      {
+        name: "Vietnam", flag: "\u{1F1FB}\u{1F1F3}",
+        hotels: [
+          { id: "as-vn-01", name: "H\u00f4tel de la Coupole", city: "Sapa" },
+          { id: "as-vn-02", name: "H\u00f4tel des Arts Saigon", city: "Ho Chi Minh City" },
+          { id: "as-vn-03", name: "Hotel de l\u2019Opera", city: "Hanoi" },
+          { id: "as-vn-04", name: "La Veranda Resort", city: "Phu Quoc" },
+          { id: "as-vn-05", name: "Legacy Yen Tu Hotel", city: "Uong Bi" }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Americas",
+    countries: [
+      {
+        name: "Argentina", flag: "\u{1F1E6}\u{1F1F7}",
+        hotels: [
+          { id: "am-ar-01", name: "Palladio Hotel", city: "Buenos Aires" }
+        ]
+      },
+      {
+        name: "Brazil", flag: "\u{1F1E7}\u{1F1F7}",
+        hotels: [
+          { id: "am-br-01", name: "Santa Teresa Hotel", city: "Rio de Janeiro" }
+        ]
+      },
+      {
+        name: "Canada", flag: "\u{1F1E8}\u{1F1E6}",
+        hotels: [
+          { id: "am-ca-01", name: "Hotel Belmont", city: "Vancouver" }
+        ]
+      },
+      {
+        name: "Mexico", flag: "\u{1F1F2}\u{1F1FD}",
+        hotels: [
+          { id: "am-mx-01", name: "Armony Marival Resort & Spa", city: "Punta de Mita" }
+        ]
+      },
+      {
+        name: "Peru", flag: "\u{1F1F5}\u{1F1EA}",
+        hotels: [
+          { id: "am-pe-01", name: "Manto Hotel", city: "Lima" }
+        ]
+      },
+      {
+        name: "United States", flag: "\u{1F1FA}\u{1F1F8}",
+        hotels: [
+          { id: "am-us-01", name: "Hotel \u00c4ndra", city: "Seattle" }
+        ]
+      },
+      {
+        name: "Uruguay", flag: "\u{1F1FA}\u{1F1FE}",
+        hotels: [
+          { id: "am-uy-01", name: "Hotel Costanero", city: "Montevideo" }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Oceania",
+    countries: [
+      {
+        name: "Australia", flag: "\u{1F1E6}\u{1F1FA}",
+        hotels: [
+          { id: "oc-au-01", name: "Elysium Noosa Resort", city: "Noosa" },
+          { id: "oc-au-02", name: "Fairmont Resort Blue Mountains", city: "Leura" },
+          { id: "oc-au-03", name: "Hotel Chadstone", city: "Melbourne" },
+          { id: "oc-au-04", name: "Manly Pacific Hotel", city: "Sydney" },
+          { id: "oc-au-05", name: "The Playford Hotel", city: "Adelaide" },
+          { id: "oc-au-06", name: "The Porter House Hotel", city: "Sydney" },
+          { id: "oc-au-07", name: "The William Inglis Hotel", city: "Warwick Farm" }
+        ]
+      },
+      {
+        name: "New Zealand", flag: "\u{1F1F3}\u{1F1FF}",
+        hotels: [
+          { id: "oc-nz-01", name: "Fable Auckland", city: "Auckland" },
+          { id: "oc-nz-02", name: "Fable Terrace Downs Resort", city: "Canterbury" },
+          { id: "oc-nz-03", name: "Hotel St Moritz", city: "Queenstown" }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Middle East",
+    countries: [
+      {
+        name: "Israel", flag: "\u{1F1EE}\u{1F1F1}",
+        hotels: [
+          { id: "me-il-01", name: "Elkonin Hotel", city: "Tel Aviv" },
+          { id: "me-il-02", name: "Theatron Jerusalem Hotel & Spa", city: "Jerusalem" }
+        ]
+      },
+      {
+        name: "Qatar", flag: "\u{1F1F6}\u{1F1E6}",
+        hotels: [
+          { id: "me-qa-01", name: "Alwadi Hotel", city: "Doha" }
+        ]
+      },
+      {
+        name: "United Arab Emirates", flag: "\u{1F1E6}\u{1F1EA}",
+        hotels: [
+          { id: "me-ae-01", name: "The Canvas Hotel", city: "Dubai" },
+          { id: "me-ae-02", name: "The Retreat Palm Dubai", city: "Dubai" }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Africa",
+    countries: [
+      {
+        name: "Algeria", flag: "\u{1F1E9}\u{1F1FF}",
+        hotels: [
+          { id: "af-dz-01", name: "Royal Hotel", city: "Oran" }
+        ]
+      },
+      {
+        name: "Kenya", flag: "\u{1F1F0}\u{1F1EA}",
+        hotels: [
+          { id: "af-ke-01", name: "Gem Forest Hotel", city: "Nairobi" }
+        ]
+      },
+      {
+        name: "Morocco", flag: "\u{1F1F2}\u{1F1E6}",
+        hotels: [
+          { id: "af-ma-01", name: "Le Diwan Hotel", city: "Rabat" },
+          { id: "af-ma-02", name: "Le Medina Essaouira Thalassa Sea & Spa", city: "Essaouira" }
+        ]
+      }
+    ]
+  }
+];
+
+// ── Flatten hotels for counting ───────────────────────────
+
+const ALL_HOTELS = [];
+for (const region of REGIONS) {
+  for (const country of region.countries) {
+    for (const hotel of country.hotels) {
+      ALL_HOTELS.push(hotel);
+    }
+  }
+}
+const TOTAL = ALL_HOTELS.length;
+
+// ── State ─────────────────────────────────────────────────
+
+let visits = {};
+
+function isVisited(hotelId, person) {
+  return visits[hotelId]?.[person] || false;
+}
+
+function setVisited(hotelId, person, value) {
+  if (!visits[hotelId]) visits[hotelId] = { marielle: false, adam: false };
+  visits[hotelId][person] = value;
+  saveLocal();
+  syncToServer(hotelId, person, value);
+  updateStats();
+}
+
+// ── LocalStorage (immediate cache) ────────────────────────
+
+function saveLocal() {
+  try { localStorage.setItem('mgallery-visits', JSON.stringify(visits)); } catch {}
+}
+
+function loadLocal() {
+  try {
+    const data = localStorage.getItem('mgallery-visits');
+    if (data) visits = JSON.parse(data);
+  } catch {}
+}
+
+// ── API Sync ──────────────────────────────────────────────
+
+const API_BASE = '/api';
+const syncDot = document.getElementById('sync-dot');
+
+async function fetchFromServer() {
+  try {
+    syncDot.className = 'sync-dot syncing';
+    const res = await fetch(API_BASE);
+    if (res.ok) {
+      const serverData = await res.json();
+      // Merge: server is source of truth
+      for (const [hotelId, data] of Object.entries(serverData)) {
+        visits[hotelId] = data;
+      }
+      saveLocal();
+      renderToggles();
+      updateStats();
+    }
+    syncDot.className = 'sync-dot';
+  } catch {
+    syncDot.className = 'sync-dot error';
+  }
+}
+
+async function syncToServer(hotelId, person, visited) {
+  try {
+    syncDot.className = 'sync-dot syncing';
+    await fetch(API_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hotelId, person, visited })
+    });
+    syncDot.className = 'sync-dot';
+  } catch {
+    syncDot.className = 'sync-dot error';
+    // Data is still saved locally, will sync on next load
+  }
+}
+
+// ── Stats ─────────────────────────────────────────────────
+
+function updateStats() {
+  let mCount = 0, aCount = 0;
+  for (const hotel of ALL_HOTELS) {
+    if (isVisited(hotel.id, 'marielle')) mCount++;
+    if (isVisited(hotel.id, 'adam')) aCount++;
+  }
+  document.getElementById('stat-marielle-count').textContent = mCount;
+  document.getElementById('stat-adam-count').textContent = aCount;
+  document.getElementById('stat-total-m').textContent = TOTAL;
+  document.getElementById('stat-total-a').textContent = TOTAL;
+
+  const mPct = TOTAL > 0 ? ((mCount / TOTAL) * 100) : 0;
+  const aPct = TOTAL > 0 ? ((aCount / TOTAL) * 100) : 0;
+  document.getElementById('progress-marielle').style.width = mPct + '%';
+  document.getElementById('progress-adam').style.width = aPct + '%';
+  document.getElementById('stat-marielle-pct').textContent = mPct.toFixed(1) + '%';
+  document.getElementById('stat-adam-pct').textContent = aPct.toFixed(1) + '%';
+  document.getElementById('total-count').textContent = TOTAL;
+}
+
+// ── Render ────────────────────────────────────────────────
+
+function renderToggles() {
+  document.querySelectorAll('.toggle').forEach(btn => {
+    const hotelId = btn.dataset.hotel;
+    const person = btn.dataset.person;
+    const active = isVisited(hotelId, person);
+    btn.classList.toggle('active-marielle', person === 'marielle' && active);
+    btn.classList.toggle('active-adam', person === 'adam' && active);
+  });
+}
+
+function buildUI() {
+  const container = document.getElementById('hotel-container');
+  let html = '';
+
+  for (const region of REGIONS) {
+    const regionHotels = region.countries.reduce((n, c) => n + c.hotels.length, 0);
+    html += `<div class="region" data-region="${region.name}">`;
+    html += `<div class="region-header" onclick="toggleRegion(this)">`;
+    html += `<span class="region-name">${region.name}</span>`;
+    html += `<div class="region-meta"><span class="region-count">${regionHotels} hotels</span><span class="region-arrow">\u25BE</span></div>`;
+    html += `</div>`;
+    html += `<div class="region-body">`;
+
+    for (const country of region.countries) {
+      html += `<div class="country" data-country="${country.name}">`;
+      html += `<div class="country-header" onclick="toggleCountry(this)">`;
+      html += `<span class="country-flag">${country.flag}</span>`;
+      html += `<span class="country-name">${country.name}</span>`;
+      html += `<span class="country-count">${country.hotels.length}</span>`;
+      html += `<span class="country-arrow">\u25BE</span>`;
+      html += `</div>`;
+      html += `<div class="country-body">`;
+      html += `<div class="col-headers"><div class="col-headers-spacer"></div><div class="col-header m-label">M</div><div class="col-header a-label">A</div></div>`;
+      html += `<ul class="hotel-list">`;
+
+      for (const hotel of country.hotels) {
+        const mActive = isVisited(hotel.id, 'marielle') ? ' active-marielle' : '';
+        const aActive = isVisited(hotel.id, 'adam') ? ' active-adam' : '';
+        html += `<li class="hotel-row" data-hotel-id="${hotel.id}" data-search="${(hotel.name + ' ' + hotel.city + ' ' + country.name).toLowerCase()}">`;
+        html += `<div class="hotel-info"><div class="hotel-name">${hotel.name}</div><div class="hotel-city">${hotel.city}</div></div>`;
+        html += `<div class="hotel-toggles">`;
+        html += `<button class="toggle${mActive}" data-hotel="${hotel.id}" data-person="marielle" onclick="handleToggle(this)" aria-label="Marielle visited ${hotel.name}">M</button>`;
+        html += `<button class="toggle${aActive}" data-hotel="${hotel.id}" data-person="adam" onclick="handleToggle(this)" aria-label="Adam visited ${hotel.name}">A</button>`;
+        html += `</div>`;
+        html += `</li>`;
+      }
+
+      html += `</ul></div></div>`;
+    }
+
+    html += `</div></div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+// ── Interactions ──────────────────────────────────────────
+
+function handleToggle(btn) {
+  const hotelId = btn.dataset.hotel;
+  const person = btn.dataset.person;
+  const current = isVisited(hotelId, person);
+  setVisited(hotelId, person, !current);
+
+  btn.classList.toggle('active-marielle', person === 'marielle' && !current);
+  btn.classList.toggle('active-adam', person === 'adam' && !current);
+}
+
+function toggleRegion(header) {
+  header.parentElement.classList.toggle('collapsed');
+}
+
+function toggleCountry(header) {
+  header.parentElement.classList.toggle('collapsed');
+}
+
+// ── Search ────────────────────────────────────────────────
+
+document.getElementById('search').addEventListener('input', function () {
+  const q = this.value.toLowerCase().trim();
+  const rows = document.querySelectorAll('.hotel-row');
+  const countries = document.querySelectorAll('.country');
+  const regions = document.querySelectorAll('.region');
+  let visibleCount = 0;
+
+  rows.forEach(row => {
+    const match = !q || row.dataset.search.includes(q);
+    row.style.display = match ? '' : 'none';
+    if (match) visibleCount++;
+  });
+
+  // Show/hide countries and regions based on visible children
+  countries.forEach(c => {
+    const hasVisible = c.querySelectorAll('.hotel-row[style=""], .hotel-row:not([style])').length > 0 ||
+                        c.querySelector('.hotel-row:not([style*="none"])');
+    c.style.display = hasVisible ? '' : 'none';
+    if (q) c.classList.remove('collapsed');
+  });
+
+  regions.forEach(r => {
+    const hasVisible = r.querySelectorAll('.country:not([style*="none"])').length > 0;
+    r.style.display = hasVisible ? '' : 'none';
+    if (q) r.classList.remove('collapsed');
+  });
+
+  document.getElementById('no-results').style.display = visibleCount === 0 && q ? 'block' : 'none';
+});
+
+// ── Init ──────────────────────────────────────────────────
+
+loadLocal();
+buildUI();
+updateStats();
+fetchFromServer();
+</script>
+
+</body>
+</html>
