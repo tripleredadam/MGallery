@@ -205,6 +205,39 @@
 
     .search-inner { position: relative; }
 
+    /* ── Filter Toggle ─────────────────────────── */
+
+    .filter-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .filter-btn {
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0b1018;
+    }
+
     /* ── Region ─────────────────────────────────── */
 
     .region {
@@ -501,6 +534,10 @@
       <div class="search-inner">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="text" class="search-input" id="search" placeholder="Search hotels, cities, or countries..." autocomplete="off" spellcheck="false">
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">All Hotels</button>
+        <button class="filter-btn" data-filter="visited" onclick="setFilter('visited')">Visited</button>
       </div>
     </div>
 
@@ -1057,6 +1094,8 @@ function handleToggle(btn) {
 
   btn.classList.toggle('active-marielle', person === 'marielle' && !current);
   btn.classList.toggle('active-adam', person === 'adam' && !current);
+
+  if (activeFilter === 'visited') applyFilters();
 }
 
 function toggleRegion(header) {
@@ -1067,37 +1106,56 @@ function toggleCountry(header) {
   header.parentElement.classList.toggle('collapsed');
 }
 
-// ── Search ────────────────────────────────────────────────
+// ── Filter ────────────────────────────────────────────────
 
-document.getElementById('search').addEventListener('input', function () {
-  const q = this.value.toLowerCase().trim();
+let activeFilter = 'all';
+
+function setFilter(filter) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+  applyFilters();
+}
+
+// ── Search & Filter ──────────────────────────────────────
+
+function applyFilters() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
   const rows = document.querySelectorAll('.hotel-row');
   const countries = document.querySelectorAll('.country');
   const regions = document.querySelectorAll('.region');
   let visibleCount = 0;
 
   rows.forEach(row => {
-    const match = !q || row.dataset.search.includes(q);
-    row.style.display = match ? '' : 'none';
-    if (match) visibleCount++;
+    const matchesSearch = !q || row.dataset.search.includes(q);
+    let matchesFilter = true;
+    if (activeFilter === 'visited') {
+      const hotelId = row.dataset.hotelId;
+      matchesFilter = isVisited(hotelId, 'marielle') || isVisited(hotelId, 'adam');
+    }
+    const visible = matchesSearch && matchesFilter;
+    row.style.display = visible ? '' : 'none';
+    if (visible) visibleCount++;
   });
 
   // Show/hide countries and regions based on visible children
   countries.forEach(c => {
-    const hasVisible = c.querySelectorAll('.hotel-row[style=""], .hotel-row:not([style])').length > 0 ||
-                        c.querySelector('.hotel-row:not([style*="none"])');
+    const hasVisible = c.querySelector('.hotel-row:not([style*="none"])');
     c.style.display = hasVisible ? '' : 'none';
-    if (q) c.classList.remove('collapsed');
+    if (q || activeFilter === 'visited') c.classList.remove('collapsed');
   });
 
   regions.forEach(r => {
     const hasVisible = r.querySelectorAll('.country:not([style*="none"])').length > 0;
     r.style.display = hasVisible ? '' : 'none';
-    if (q) r.classList.remove('collapsed');
+    if (q || activeFilter === 'visited') r.classList.remove('collapsed');
   });
 
-  document.getElementById('no-results').style.display = visibleCount === 0 && q ? 'block' : 'none';
-});
+  document.getElementById('no-results').style.display = visibleCount === 0 && (q || activeFilter === 'visited') ? 'block' : 'none';
+}
+
+document.getElementById('search').addEventListener('input', applyFilters);
 
 // ── Init ──────────────────────────────────────────────────
 
