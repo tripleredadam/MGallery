@@ -210,7 +210,7 @@
     .filter-bar {
       display: flex;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 14px;
     }
 
     .filter-btn {
@@ -533,7 +533,7 @@
     <div class="search-wrap">
       <div class="search-inner">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" class="search-input" id="search" placeholder="Search hotels, cities, or countries..." autocomplete="off" spellcheck="false">
+        <input type="text" class="search-input" id="search" placeholder="Search hotels, cities, or countries..." aria-label="Search hotels, cities, or countries" autocomplete="off" spellcheck="false">
       </div>
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">All Hotels</button>
@@ -564,6 +564,7 @@ const REGIONS = [
           { id: "eu-fr-01", name: "5 Terres H\u00f4tel & Spa", city: "Barr" },
           { id: "eu-fr-02", name: "Aigle Noir Fontainebleau", city: "Fontainebleau" },
           { id: "eu-fr-03", name: "Balthazar H\u00f4tel & Spa", city: "Rennes" },
+          { id: "eu-fr-38", name: "Bel H\u00f4tel Ol\u00e9ron Thalasso & Spa", city: "Saint-Trojan-les-Bains" },
           { id: "eu-fr-04", name: "Boutet Bastille Hotel", city: "Paris" },
           { id: "eu-fr-05", name: "Cabot Bordeaux", city: "Bordeaux" },
           { id: "eu-fr-06", name: "Carlton Hotel Lyon", city: "Lyon" },
@@ -572,6 +573,7 @@ const REGIONS = [
           { id: "eu-fr-09", name: "Croisette Beach Hotel", city: "Cannes" },
           { id: "eu-fr-10", name: "Cures Marines Hotel & Spa", city: "Trouville-sur-Mer" },
           { id: "eu-fr-11", name: "Domaine des Vanneaux Golf & Spa", city: "Presles" },
+          { id: "eu-fr-37", name: "Domaine du Liziec", city: "Vannes" },
           { id: "eu-fr-12", name: "Domaine Reine Margot", city: "Issy-les-Moulineaux" },
           { id: "eu-fr-13", name: "Grand H\u00f4tel Beauvau", city: "Marseille" },
           { id: "eu-fr-14", name: "Grand Hotel La Cloche", city: "Dijon" },
@@ -750,6 +752,12 @@ const REGIONS = [
         ]
       },
       {
+        name: "Maldives", flag: "\u{1F1F2}\u{1F1FB}",
+        hotels: [
+          { id: "as-mv-01", name: "V Villas Maldives at Mirihi", city: "Mirihi" }
+        ]
+      },
+      {
         name: "Myanmar", flag: "\u{1F1F2}\u{1F1F2}",
         hotels: [
           { id: "as-mm-01", name: "The Lake Garden Hotel", city: "Nay Pyi Taw" }
@@ -773,6 +781,8 @@ const REGIONS = [
         hotels: [
           { id: "as-th-01", name: "Avista Grande Karon Resort & Spa", city: "Phuket" },
           { id: "as-th-02", name: "Avista Hideaway Patong Resort & Spa", city: "Phuket" },
+          { id: "as-th-08", name: "Kamaliss MontAzure Phuket", city: "Phuket" },
+          { id: "as-th-09", name: "Navera Phuket", city: "Phuket" },
           { id: "as-th-03", name: "Veranda High Resort", city: "Chiang Mai" },
           { id: "as-th-04", name: "Veranda Resort", city: "Pattaya" },
           { id: "as-th-05", name: "V Villas Hua Hin", city: "Hua Hin" },
@@ -857,6 +867,7 @@ const REGIONS = [
           { id: "oc-au-02", name: "Fairmont Resort Blue Mountains", city: "Leura" },
           { id: "oc-au-03", name: "Hotel Chadstone", city: "Melbourne" },
           { id: "oc-au-04", name: "Manly Pacific Hotel", city: "Sydney" },
+          { id: "oc-au-08", name: "The Brighton Hotel", city: "Sydney" },
           { id: "oc-au-05", name: "The Playford Hotel", city: "Adelaide" },
           { id: "oc-au-06", name: "The Porter House Hotel", city: "Sydney" },
           { id: "oc-au-07", name: "The William Inglis Hotel", city: "Warwick Farm" }
